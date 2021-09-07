@@ -57,7 +57,6 @@ if __name__ == '__main__':
     print("Created successfully annotation for " + str(instance_id) + " instances")
     print("done!")
 
-
     # (R, G, B)
     # (int(id) & 255, (int(id) >> 8) & 255),int(id) >> 16)
     # #rgb = '('+ str(int(id) & 255) + ',' + str((int(id) >> 8) & 255) + ',' + str(int(id) >> 16) +')'

@@ -71,7 +71,6 @@ def create_sub_mask_annotation(sub_mask, image_id, category_id, annotation_id, i
     return annotation
 
 
-
 def create_sub_masks(mask_image, rgb_list):
     width, height = mask_image.size
     # Initialize a dictionary of sub-masks indexed by RGB colors
