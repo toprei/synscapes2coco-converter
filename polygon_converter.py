@@ -97,3 +97,4 @@ def create_sub_masks(mask_image, rgb_list):
 
     # print(counter)
     return sub_masks
+
