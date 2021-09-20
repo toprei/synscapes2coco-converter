@@ -3,8 +3,6 @@ from skimage import measure                        # (pip install scikit-image)
 from shapely.geometry import Polygon, MultiPolygon # (pip install Shapely)
 from PIL import Image
 
-# R + G * 256 + B * 256^2.
-# sub_mask , image_id, category_id, annotation_id, is_crowd == False
 def create_sub_mask_annotation(sub_mask, image_id, category_id, annotation_id, is_crowd):
     # Find contours (boundary lines) around each sub-mask
     # Note: there could be multiple contours if the object

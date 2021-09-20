@@ -12,24 +12,27 @@ if __name__ == '__main__':
     annotation_list = []
     images_list = []
     instance_id = 0
-    for i in range(24501, 25000+1):
+
+    # define the range of which pictures of the synscapes should be converted into the train json
+    for i in range(1, 24000+1):
         print("processing image: "+str(i))
+        # path to the synscapes instance and meta folder
         img = Image.open('/media/hdd1/Public_Datasets/Synscapes/synscapes/Synscapes/img/instance/'+str(i)+'.png')
         with open('/media/hdd1/Public_Datasets/Synscapes/synscapes/Synscapes/meta/'+str(i)+'.json') as jsonFile:
             jsonMeta = json.load(jsonFile)
             jsonFile.close()
-
         instance = jsonMeta['instance']
         classes = instance['class']
         occluded = instance['occluded']
 
+        # use the instance id to calculate the instance rgb value
         rgb_list = []
         for id, class_id in classes.items():
             # create list to filter only instances of class 24 (person) and less than some occlusion threshold
             if class_id == 24 and occluded[id] <= 0.50:
                 rgb_list.append((int(id) & 255,int(id) >> 8 & 255,int(id) >> 16))
 
-        # create submasks of image i
+        # create submasks of image using the rgb instance information
         image_submasks = create_sub_masks(img, rgb_list)
 
         # create for each submask a polygon annotation
@@ -57,9 +60,7 @@ if __name__ == '__main__':
     print("Created successfully annotation for " + str(instance_id) + " instances")
     print("done!")
 
-    # (R, G, B)
-    # (int(id) & 255, (int(id) >> 8) & 255),int(id) >> 16)
-    # #rgb = '('+ str(int(id) & 255) + ',' + str((int(id) >> 8) & 255) + ',' + str(int(id) >> 16) +')'
+
 
 
 
